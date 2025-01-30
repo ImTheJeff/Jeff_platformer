@@ -127,10 +127,11 @@ class Player extends GameObject{
         if (this.y < obj.y) {
           this.y = obj.y - this.height;
           this.gravitySpeed = 0;
+          this.speedY = 0;
         } else {
-          this.y = obj.y + obj.heighy;
+          this.y = obj.y + obj.height;
+          this.speedY *= 1;
         }
-        this.speedY = 0;
       }
     }
 
