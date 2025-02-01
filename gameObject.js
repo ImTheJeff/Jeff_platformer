@@ -13,8 +13,7 @@
     this.y = y;
     this.color = color;
     
-    Engine.gameObjects.push(this);
-    
+    Engine.gameObjects.push(this); 
   }
 
   render() {
@@ -42,6 +41,9 @@ class Player extends GameObject{
     super(width, height, color, x, y, type)
     this.gravity = 0.001;
     this.gravitySpeed = 0;
+    this.canJump = true;
+
+    Engine.players.push(this);
   }
 
   move() {
@@ -54,14 +56,10 @@ class Player extends GameObject{
       }
     }
 
-    if (!((Controls.keys['Up']) && (Controls.keys['Down']))) {
-      if (Controls.keys['Up']) {
-        this.y -= 4;
-      }
-      // if (Controls.keys['Down']) {
-      //   this.y += 1;
-      // }
-    } 
+    if (Controls.keys['Up'] && this.canJump) {
+      this.speedY = -2.5;
+    }
+    
   }
 
   playerRender() {
@@ -76,15 +74,6 @@ class Player extends GameObject{
     ctx.fillRect(this.x, this.y, this.width, this.height);
     }
   }
-
-  // stopAtBottom() {
-  //   this.bottomPoint = Engine.ground.y - this.height;
-  //   if (this.y > this.bottomPoint) {
-  //     this.y = this.bottomPoint;
-  //     this.gravitySpeed = 0;
-  //     this.speedY = 0;
-  //   }
-  // }
 
     checkCollisions() { //checks if the player is colliding with an object
       Engine.gameObjects.forEach(obj => {
@@ -127,10 +116,13 @@ class Player extends GameObject{
         if (this.y < obj.y) {
           this.y = obj.y - this.height;
           this.gravitySpeed = 0;
+          if (this.speedY > 0) {
+          this.canJump = true;
+          }
           this.speedY = 0;
         } else {
           this.y = obj.y + obj.height;
-          this.speedY *= 1;
+          this.gravity = 0.001;
         }
       }
     }
@@ -141,6 +133,14 @@ class Player extends GameObject{
     this.gravitySpeed += this.gravity;
     this.x += this.speedX;
     this.y += this.speedY += this.gravitySpeed; 
+    if (this.speedY != 0) {
+      this.canJump = false;
+    }
+
+    if ((this.x < 0) || (this.x + this.width > 854)) {
+      this.x = 0;
+      this.speedX = 0;
+    }
     this.checkCollisions();
   }
 }

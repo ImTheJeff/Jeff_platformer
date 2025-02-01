@@ -2,16 +2,18 @@ class Engine {
   static canvas = document.querySelector("canvas");
   static ctx = this.canvas.getContext("2d");
   static gameObjects = [];
+  static players = [];
   static init() {
     this.canvas.width = 854;
     this.canvas.height = 480;
     this.canvas.style = 'position: absolute; top: 10%; left: 12%; border: solid blue;';
 
-    Engine.background = new GameObject(859, 485, 'world_background.png', 0, 0, 'image');
+    Engine.background = new GameObject(854, 485, 'world_background.png', 0, 0, 'image');
     Engine.ground = new GameObject(854, 120, 'brown', 0, 360);
-    new GameObject(150, 16, 'blue', 250, 250);
+    new GameObject(150, 16, 'blue', 50, 250);
     Engine.player = new Player(30, 30, 'red', 10, 120);
-    
+    Engine.enemy = new Enemy(30, 30, 'blue', 400, 120)
+
     Engine.gameloop(); //starts the gameloop
   }
 
@@ -32,13 +34,21 @@ class Engine {
   }
 
   static superUpdate() { //updates every game object
-    Engine.player.move(); 
-    Engine.player.playerNewPos(); 
-    Engine.player.playerRender();
+
+    if (Engine.player) { // if the player exists
+      Engine.player.move(); 
+      Engine.player.playerNewPos(); 
+      Engine.player.playerRender();
+    } 
+
+
+    Engine.enemy.move();
+    Engine.enemy.enemyNewPos();
+    Engine.enemy.enemyRender();
     
     Engine.gameObjects.forEach(gameObject => { 
       gameObject.newPos();
-      gameObject.render(); 
+      gameObject.render();  
     })                                                       
   }
 }
