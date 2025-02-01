@@ -1,4 +1,4 @@
-class GameObject {
+ class GameObject {
   constructor(width, height, color, x, y, type) {
     this.type = type;
     if (type == 'image') {
@@ -58,9 +58,9 @@ class Player extends GameObject{
       if (Controls.keys['Up']) {
         this.y -= 4;
       }
-      if (Controls.keys['Down']) {
-        this.y += 1;
-      }
+      // if (Controls.keys['Down']) {
+      //   this.y += 1;
+      // }
     } 
   }
 
