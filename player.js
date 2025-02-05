@@ -5,7 +5,6 @@ constructor(width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.canJump = true; //variable to disable double/triple jumping 
     this.playerDie = false; //variable to enable the player to die under certain conditions 
-    this.enemyDie = false;
 
     Engine.players.push(this);
 }
