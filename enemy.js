@@ -5,7 +5,7 @@ class Enemy extends Player {
         this.gravitySpeed = 0;
     }
 
-    move() {
+    move() { //the enemy automatically moves to the left 
         this.x -= 0.5;
     }
 
@@ -33,10 +33,6 @@ class Enemy extends Player {
             this.x = 0;
             this.speedX = 0;
           }
-        if (Engine.player && this.isColliding(Engine.player)) {
-            Engine.player = null;
-            Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player));
-        }
         this.checkCollisions();
     }
 }

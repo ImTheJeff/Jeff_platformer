@@ -3,14 +3,14 @@ class Engine {
   static ctx = this.canvas.getContext("2d");
   static gameObjects = [];
   static players = [];
-  static init() {
+  static init() { //starts the window and game 
     this.canvas.width = 854;
     this.canvas.height = 480;
     this.canvas.style = 'position: absolute; top: 10%; left: 12%; border: solid blue;';
 
-    Engine.background = new GameObject(854, 485, 'world_background.png', 0, 0, 'image');
+    Engine.background = new GameObject(854, 485, 'world_background.png', 0, 0, 'image'); 
     Engine.ground = new GameObject(854, 120, 'brown', 0, 360);
-    new GameObject(150, 16, 'blue', 50, 250);
+    new GameObject(150, 16, 'blue', 50, 250); //creates a platform 
     Engine.player = new Player(30, 30, 'red', 10, 120);
     Engine.enemy = new Enemy(30, 30, 'blue', 400, 120)
 
@@ -41,12 +41,13 @@ class Engine {
       Engine.player.playerRender();
     } 
 
-
+    if (Engine.enemy) { // if the enemy exists
     Engine.enemy.move();
     Engine.enemy.enemyNewPos();
     Engine.enemy.enemyRender();
+    }
     
-    Engine.gameObjects.forEach(gameObject => { 
+    Engine.gameObjects.forEach(gameObject => { //loops and updates every object 
       gameObject.newPos();
       gameObject.render();  
     })                                                       
