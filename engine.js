@@ -22,15 +22,17 @@ class Engine {
   }
 
   static fps = 30; 
-  static interval = 1000 / Engine.fps; //frameate
+  static interval = 1000 / Engine.fps; //framerate
 
   static gameloop() {
-    let start = Date.now();
-    Engine.clear();
-    Engine.superUpdate();
-    let end = Date.now();
-    let d_time = end - start;
-    setTimeout(Engine.gameloop, this.interval - d_time); //fixed framerate for different computers
+    if (Engine.player.playerDie == false) {
+      let start = Date.now();
+      Engine.clear();
+      Engine.superUpdate();
+      let end = Date.now();
+      let d_time = end - start;
+      setTimeout(Engine.gameloop, this.interval - d_time); //fixed framerate for different computers
+    }
   }
 
   static superUpdate() { //updates every game object
@@ -53,5 +55,7 @@ class Engine {
     })                                                       
   }
 }
+
+Engine.init();
 
 

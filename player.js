@@ -100,8 +100,13 @@ playerNewPos() {
     this.canJump = false; //then the player can't jump anymore 
     }
 
-    if ((this.x < 0) || (this.x + this.width > 854)) { //prevents the player from going outside the window horizontally 
+    if (this.x < 0) { //prevents the player from going outside the window's left side  
     this.x = 0;
+    this.speedX = 0;
+    }
+
+    if (this.x + this.width > 854) {
+    this.x = 854 - this.width;
     this.speedX = 0;
     }
 
