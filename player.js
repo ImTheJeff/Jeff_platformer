@@ -87,7 +87,7 @@ playerRender() {
         this.speedY = 0;
         } else {
         this.y = obj.y + obj.height;
-        this.gravitySpeed = 0.8;
+        this.speedY *= 1;
         }
     }
     }
