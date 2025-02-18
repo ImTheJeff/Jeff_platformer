@@ -68,7 +68,9 @@ playerRender() {
     );
 
     if (collisionX < collisionY) { //find the collision direction 
-        this.playerDie = true;
+        if (obj == Engine.enemy) { //if the player collides horizontally with the enemy
+        this.playerDie = true; 
+        }
         if (this.x < obj.x) { 
         this.x = obj.x - this.width; //stops the objects 
         } else {
@@ -90,8 +92,6 @@ playerRender() {
     }
     }
 
-
-
 playerNewPos() {
     this.gravitySpeed += this.gravity;
     this.x += this.speedX;
@@ -105,13 +105,13 @@ playerNewPos() {
     this.speedX = 0;
     }
 
-    if (this.x + this.width > 854) {
+    if (this.x + this.width > 854) { //right side 
     this.x = 854 - this.width;
     this.speedX = 0;
     }
 
-    if (Engine.enemy && this.isColliding(Engine.enemy) && (this.playerDie === true)) {
-    Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player)); //stops the game if the enemy collides with the player horizontally
+    if (this.playerDie) {
+    Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player)); //the player dies 
     }
     this.checkCollisions();
 }
