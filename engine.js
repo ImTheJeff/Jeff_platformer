@@ -1,3 +1,5 @@
+const game_over = document.getElementById("gameover"); //importing the game_over element 
+
 class Engine {
   static canvas = document.querySelector("canvas");
   static ctx = this.canvas.getContext("2d");
@@ -10,7 +12,7 @@ class Engine {
 
     Engine.background = new GameObject(854, 485, 'world_background.png', 0, 0, 'image'); 
     Engine.ground = new GameObject(854, 120, 'brown', 0, 360);
-    new GameObject(150, 16, 'blue', 50, 250); //creates a platform 
+    Engine.platform = new GameObject(150, 16, 'blue', 50, 250); //creates a platform 
     Engine.player = new Player(30, 30, 'red', 10, 120);
     Engine.enemy = new Enemy(30, 30, 'blue', 400, 120)
 
@@ -32,6 +34,8 @@ class Engine {
       let end = Date.now();
       let d_time = end - start;
       setTimeout(Engine.gameloop, this.interval - d_time); //fixed framerate for different computers
+    } else {
+      game_over.style = "display: flex;" //makes it appear when the player dies 
     }
   }
 

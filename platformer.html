@@ -4,48 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platformer</title>
+    <link rel="stylesheet" href="platformer.css">
     <script src="controls.js" defer></script>
     <script src="gameObject.js" defer></script>
     <script src="player.js" defer></script> 
     <script src="enemy.js" defer></script>
     <script src="engine.js" defer></script>
-
-<style>
-    .game_over {
-        width:854px;
-        height:85px;
-        top:35%;
-        left:12%;
-        background-color:black;
-        border-style:solid;
-        border-color:white;
-        display:none;
-        justify-content:center;
-        align-content:center;
-        position:absolute;
-    }
-
-    h1 {
-        left:40%;
-        bottom:15%;
-        position:absolute;
-    }
-
-    h2 {
-        top:60%;
-        left:42%;
-        font-size:10px;
-        position:absolute;
-    }
-
-
-</style>
 </head>
 <body>
 
 <canvas></canvas>
 
-<div class="game_over">
+<div class="game_over" id="gameover">
     <h1>Game Over</h1>
     <h2>Press CTRL+R to try again</h2>
 </div>   

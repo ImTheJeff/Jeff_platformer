@@ -18,7 +18,6 @@ move() {
         this.x += 1;
     }
     }
-
     if (Controls.keys['Up'] && this.canJump) {
     this.speedY = -2;
     }
@@ -87,7 +86,7 @@ playerRender() {
         this.speedY = 0;
         } else {
         this.y = obj.y + obj.height;
-        this.speedY *= 1;
+        this.gravitySpeed *= 1;
         }
     }
     }
