@@ -1,11 +1,13 @@
 .game_over { 
     width:854px;
     height:85px;
-    top:35%;
+    top:29%;
     left:12%;
     background-color:black;
     border-style:solid;
     border-color:white;
+    border-left-color:blue;
+    border-right-color:blue;
     display:none;
     justify-content:center;
     align-content:center;
@@ -15,6 +17,7 @@
 h1 {
     left:40%;
     bottom:15%;
+    color:white;
     position:absolute;
 }
 
@@ -22,5 +25,6 @@ h2 {
     top:60%;
     left:42%;
     font-size:10px;
+    color:white;
     position:absolute;
 }
