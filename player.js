@@ -37,59 +37,62 @@ playerRender() {
     }
 }
 
-    checkCollisions() { //checks if the player is colliding with an object
-    Engine.gameObjects.forEach(obj => {
-        if (obj !== this && this.isColliding(obj)) { //!== this means checks all gameobjects except itself 
-            this.resolveCollision(obj); 
-        }
-    });
+checkCollisions() { //checks if the player is colliding with an object
+Engine.gameObjects.forEach(obj => {
+    if (obj !== this && this.isColliding(obj)) { //!== this means checks all gameobjects except itself 
+        this.resolveCollision(obj); 
     }
+});
+}
 
-    isColliding(obj) { //every time it is executed it returns the distance between objects to detect if they are colliding 
-    return (
-        this.x < obj.x + obj.width &&
-        this.x + this.width > obj.x &&
-        this.y < obj.y + this.height && 
-        this.y + this.height > obj.y 
-    );
+isColliding(obj) { //every time it is executed it returns the distance between objects to detect if they are colliding 
+return (
+    this.x < obj.x + obj.width &&
+    this.x + this.width > obj.x &&
+    this.y < obj.y + this.height && 
+    this.y + this.height > obj.y 
+);
+}
+
+resolveCollision(obj) {
+//find the collision 
+let collisionX = Math.min( //Math.min returns the smallest value 
+    this.x + this.width - obj.x, 
+    obj.x + obj.width - this.x
+);
+
+let collisionY = Math.min(
+    this.y + this.height - obj.y,
+    obj.y + obj.height - this.y
+);
+
+if (collisionX < collisionY) { //find the collision direction 
+    if (obj == Engine.enemy) { //if the player collides horizontally with the enemy
+    this.playerDie = true; 
     }
-
-    resolveCollision(obj) {
-    //find the collision 
-    let collisionX = Math.min( //Math.min returns the smallest value 
-        this.x + this.width - obj.x, 
-        obj.x + obj.width - this.x
-    );
-
-    let collisionY = Math.min(
-        this.y + this.height - obj.y,
-        obj.y + obj.height - this.y
-    );
-
-    if (collisionX < collisionY) { //find the collision direction 
-        if (obj == Engine.enemy) { //if the player collides horizontally with the enemy
-        this.playerDie = true; 
-        }
-        if (this.x < obj.x) { 
-        this.x = obj.x - this.width; //stops the objects 
-        } else {
-        this.x = obj.x + obj.width;
-        }
-        this.speedX = 0;
-    } else { 
-        if (this.y < obj.y) {
-        this.y = obj.y - this.height;
-        this.gravitySpeed = 0;
-        if (this.speedY > 0) { 
-        this.canJump = true; //the player can jump if it's not midair 
-        }
-        this.speedY = 0;
-        } else {
-        this.y = obj.y + obj.height;
-        this.gravitySpeed *= 1;
-        }
+    // if (obj == Engine.player) {
+    // this.playerDie = true;
+    // }
+    if (this.x < obj.x) { 
+    this.x = obj.x - this.width; //stops the objects 
+    } else {
+    this.x = obj.x + obj.width;
     }
+    this.speedX = 0;
+} else { 
+    if (this.y < obj.y) {
+    this.y = obj.y - this.height;
+    this.gravitySpeed = 0;
+    if (this.speedY > 0) { 
+    this.canJump = true; //the player can jump if it's not midair 
     }
+    this.speedY = 0;
+    } else {
+    this.y = obj.y + obj.height;
+    this.gravitySpeed *= 1;
+    }
+}
+}
 
 playerNewPos() {
     this.gravitySpeed += this.gravity;

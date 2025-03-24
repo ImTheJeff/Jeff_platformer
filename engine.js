@@ -58,6 +58,11 @@ class Engine {
       gameObject.render();  
     })                                                       
   }
+
+  static reloadGame() { //reloads the game
+    location.reload();
+    console.log("BUUUUUU")
+  }
 }
 
 Engine.init();

@@ -1,6 +1,23 @@
+h1 {
+    left:40%;
+    bottom:40%;
+    color:white;
+    position:absolute;
+}
+
+h2 {
+    width:400px;
+    bottom:-15.5px;
+    left:-35%;
+    font-size:20px;
+    color:white;
+    position:absolute;
+    
+}
+
 .game_over { 
     width:854px;
-    height:85px;
+    height:120px;
     top:29%;
     left:12%;
     background-color:black;
@@ -10,21 +27,25 @@
     border-right-color:blue;
     display:none;
     justify-content:center;
-    align-content:center;
     position:absolute;
 }
 
-h1 {
-    left:40%;
-    bottom:15%;
-    color:white;
-    position:absolute;
-}
 
-h2 {
+#game_over_button {
+    width:240px;
+    height:28.5px;
     top:60%;
-    left:42%;
-    font-size:10px;
-    color:white;
+    left:36%;
+    background-color:black;
+    border-style:solid;
+    border-color:white;
+    display:flex;
+    justify-content:center;
+    flex-wrap:nowrap;
     position:absolute;
+}
+
+#game_over_button:hover {
+    background-color:#2995E9;
+    cursor:pointer;
 }
