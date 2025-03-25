@@ -60,8 +60,7 @@ class Engine {
   }
 
   static reloadGame() { //reloads the game
-    location.reload();
-    console.log("BUUUUUU")
+  location.reload();
   }
 }
 

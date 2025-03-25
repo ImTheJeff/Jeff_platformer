@@ -22,11 +22,12 @@ class Enemy extends Player {
       }
   }
 
-  checkCollisionWithPlayer() {
-    if (this.playerDie) {
-    Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player)); //the player dies
-    }
-  }
+  // checkCollisionWithPlayer() {
+  //   if (this.isColliding(Engine.player)) {
+  //   Engine.player.playerDie = true;
+  //   console.log("Hello");
+  //   }
+  // }
 
   enemyNewPos() {
       this.gravitySpeed += this.gravity;
@@ -40,6 +41,6 @@ class Enemy extends Player {
           this.speedX = 0;
         }
       this.checkCollisions();
-      this.checkCollisionWithPlayer();
+      // this.checkCollisionWithPlayer();
   }
 }

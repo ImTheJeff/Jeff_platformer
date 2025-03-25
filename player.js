@@ -19,7 +19,7 @@ move() {
     }
     }
     if (Controls.keys['Up'] && this.canJump) {
-    this.speedY = -2;
+    this.speedY = -1.5;
     }
     
 }
@@ -70,9 +70,9 @@ if (collisionX < collisionY) { //find the collision direction
     if (obj == Engine.enemy) { //if the player collides horizontally with the enemy
     this.playerDie = true; 
     }
-    // if (obj == Engine.player) {
-    // this.playerDie = true;
-    // }
+    if (obj == Engine.player) {
+    this.playerDie = true; 
+    }
     if (this.x < obj.x) { 
     this.x = obj.x - this.width; //stops the objects 
     } else {
@@ -88,6 +88,7 @@ if (collisionX < collisionY) { //find the collision direction
     }
     this.speedY = 0;
     } else {
+    this.speedY == 0;
     this.y = obj.y + obj.height;
     this.gravitySpeed *= 1;
     }
