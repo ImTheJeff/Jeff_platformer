@@ -1,9 +1,9 @@
  class GameObject { 
   constructor(width, height, color, x, y, type) {
-    this.type = type; //parameter for triggering different lines of code for images 
+    this.type = type;  
     if (type == 'image') {  
       this.image = new Image();
-      this.image.src = color; //the image URL corresponds the color parameter
+      this.image.src = color; 
     }
     this.width = width;
     this.height = height;
@@ -16,7 +16,7 @@
     Engine.gameObjects.push(this); 
   }
 
-  render() { //places/draws gameobjects with the appropriate functions 
+  render() {  
     let ctx = Engine.ctx;
     if (this.type == 'image') {
       ctx.drawImage(this.image,
@@ -29,7 +29,7 @@
     }
   }
 
-  newPos() { //calculates the new position 
+  newPos() {  
     this.x += this.speedX;
     this.y += this.speedY; 
   }

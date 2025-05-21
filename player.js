@@ -3,19 +3,19 @@ constructor(width, height, color, x, y, type) {
     super(width, height, color, x, y, type)
     this.gravity = 0.001;
     this.gravitySpeed = 0;
-    this.canJump = true; //variable to disable double/triple jumping 
-    this.playerDie = false; //variable to enable the player to die under certain conditions 
+    this.canJump = true;  
+    this.playerDie = false;  
 
     Engine.players.push(this);
 }
 
 move() {
-    if (!((Controls.keys['Left']) && (Controls.keys['Right']))) { //if both keys aren't pressed at the same time
+    if (!((Controls.keys['Left']) && (Controls.keys['Right']))) { 
     if (Controls.keys['Left']) { 
-        this.x -= 1;
+        this.x -= 2;
     }
     if (Controls.keys['Right']) {
-        this.x += 1;
+        this.x += 2;
     }
     }
     if (Controls.keys['Up'] && this.canJump) {
@@ -37,15 +37,15 @@ playerRender() {
     }
 }
 
-    checkCollisions() { //checks if the player is colliding with an object
+    checkCollisions() { 
     Engine.gameObjects.forEach(obj => {
-        if (obj !== this && this.isColliding(obj)) { //!== this means checks all gameobjects except itself 
+        if (obj !== this && this.isColliding(obj)) { 
             this.resolveCollision(obj); 
         }
     });
     }
 
-    isColliding(obj) { //every time it is executed it returns the distance between objects to detect if they are colliding 
+    isColliding(obj) {  
     return (
         this.x < obj.x + obj.width &&
         this.x + this.width > obj.x &&
@@ -54,9 +54,8 @@ playerRender() {
     );
     }
 
-    resolveCollision(obj) {
-    //find the collision 
-    let collisionX = Math.min( //Math.min returns the smallest value 
+    resolveCollision(obj) { 
+    let collisionX = Math.min( 
         this.x + this.width - obj.x, 
         obj.x + obj.width - this.x
     );
@@ -66,12 +65,12 @@ playerRender() {
         obj.y + obj.height - this.y
     );
 
-    if (collisionX < collisionY) { //find the collision direction 
-        if (obj == Engine.enemy) { //if the player collides horizontally with the enemy
+    if (collisionX < collisionY) { 
+        if (obj == Engine.enemy) { 
         this.playerDie = true; 
         }
         if (this.x < obj.x) { 
-        this.x = obj.x - this.width; //stops the objects 
+        this.x = obj.x - this.width;  
         } else {
         this.x = obj.x + obj.width;
         }
@@ -81,7 +80,7 @@ playerRender() {
         this.y = obj.y - this.height;
         this.gravitySpeed = 0;
         if (this.speedY > 0) { 
-        this.canJump = true; //the player can jump if it's not midair 
+        this.canJump = true; 
         }
         this.speedY = 0;
         } else {
@@ -95,22 +94,22 @@ playerNewPos() {
     this.gravitySpeed += this.gravity;
     this.x += this.speedX;
     this.y += this.speedY += this.gravitySpeed; 
-    if (this.speedY != 0) { //if the player is in midair 
-    this.canJump = false; //then the player can't jump anymore 
+    if (this.speedY != 0) {  
+    this.canJump = false;  
     }
 
-    if (this.x < 0) { //prevents the player from going outside the window's left side  
+    if (this.x < 0) { 
     this.x = 0;
     this.speedX = 0;
     }
 
-    if (this.x + this.width > 854) { //right side 
+    if (this.x + this.width > 854) {  
     this.x = 854 - this.width;
     this.speedX = 0;
     }
 
     if (this.playerDie) {
-    Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player)); //the player dies 
+    Engine.gameObjects.splice(Engine.gameObjects.find(Engine.player));  
     }
     this.checkCollisions();
 }

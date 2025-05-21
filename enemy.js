@@ -5,7 +5,7 @@ class Enemy extends Player {
         this.gravitySpeed = 0;
     }
 
-    move() { //the enemy automatically moves to the left 
+    move() {  
         this.x -= 0.5;
     }
 
